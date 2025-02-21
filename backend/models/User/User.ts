@@ -49,7 +49,6 @@ const userSchema = new mongoose.Schema<HydratedDocument<UserFields>, UserModel, 
     },
     avatar: {
         type: String,
-        required: true
     }
 });
 
