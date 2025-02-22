@@ -5,7 +5,8 @@ import axiosAPI from "../../../axiosAPI.ts";
 import {useAppDispatch, useAppSelector} from "../../../app/hooks.ts";
 import {selectErrorCocktail, selectLoadingCocktail, selectOneCocktail} from "../cocktailSlice.ts";
 import {fetchCocktailById, postRating} from "../cocktailThunk.ts";
-import ReactStars from "react-stars";
+import ReactStars from 'react-stars';
+
 
 const CocktailDetails = () => {
     const { id } = useParams<{ id: string }>();

@@ -32,7 +32,7 @@ const Cocktails = () => {
         {!isLoading && !error && cocktails.length === 0 && (
             <Alert severity="info">No cocktails found.</Alert>
         )}
-        {!isLoading && !error && cocktails.map((cocktail) => (
+          {!isLoading && !error && Array.isArray(cocktails) && cocktails.length > 0 && cocktails.map((cocktail) => (
             <Grid key={cocktail._id} sx={{ flexBasis: "25%" }}>
               <Link
                   to={`/cocktails/${cocktail._id}`}
