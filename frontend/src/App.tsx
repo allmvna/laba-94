@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import RegisterPage from "./features/users/RegisterPage";
 import LoginPage from "./features/users/LoginPage";
 import Cocktails from "./features/cocktails/Cocktails.tsx";
+import CocktailDetails from "./features/cocktails/components/CocktailDetails.tsx";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Cocktails />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+              <Route path="/cocktails/:id" element={<CocktailDetails />} />
             <Route
               path="*"
               element={<Alert severity="error">Page not found</Alert>}

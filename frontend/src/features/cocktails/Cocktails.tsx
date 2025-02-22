@@ -6,6 +6,7 @@ import { CircularProgress, Alert, Card, CardContent, CardMedia, Typography } fro
 import Grid from "@mui/material/Grid2";
 import axiosAPI from "../../axiosAPI.ts";
 import {selectUser} from "../users/userSlice.ts";
+import {Link} from "react-router-dom";
 
 const Cocktails = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,13 @@ const Cocktails = () => {
         )}
         {!isLoading && !error && cocktails.map((cocktail) => (
             <Grid key={cocktail._id} sx={{ flexBasis: "25%" }}>
+              <Link
+                  to={`/cocktails/${cocktail._id}`}
+                  style={{
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
+              >
               <Card
                   sx={{
                     minWidth: 200,
@@ -95,6 +103,7 @@ const Cocktails = () => {
                   </Typography>
                 </CardContent>
               </Card>
+              </Link>
             </Grid>
         ))}
       </Grid>
