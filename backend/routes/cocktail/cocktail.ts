@@ -3,20 +3,32 @@ import auth, {RequestWithUser} from "../../middleware/auth";
 import permit from "../../middleware/permit";
 import {imagesUpload} from "../../multer";
 import Cocktail from "../../models/Cocktail/Cocktail";
+import {ObjectId} from "mongodb";
 
 const cocktailRouter = express.Router();
 
-cocktailRouter.get('/', async (req, res) => {
+cocktailRouter.get('/', auth, async (req, res) => {
     try {
-        // const expressReq = req as RequestWithUser;
-        // const user = expressReq.user;
-        //
-        // if (!user) {
-        //     res.status(401).json({ error: 'Unauthorized' });
-        //     return;
-        // }
+        const expressReq = req as RequestWithUser;
+        const user = expressReq.user;
 
-        const cocktails = await Cocktail.find();
+        const query: { user?: ObjectId | string; isPublished?: boolean } = {};
+
+        if (user) {
+            if (user.role !== 'admin') {
+                query.user = user._id;
+            }
+        } else {
+            query.isPublished = true;
+        }
+
+        const cocktails = await Cocktail.find(query);
+
+        if (!cocktails.length) {
+            res.status(200).json({ message: 'No cocktails found', cocktails: [] });
+            return;
+        }
+
         res.status(200).json(cocktails);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching cocktails'});

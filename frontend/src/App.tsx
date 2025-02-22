@@ -3,7 +3,7 @@ import AppToolbar from "./components/AppToolbar/AppToolbar";
 import { Route, Routes } from "react-router-dom";
 import RegisterPage from "./features/users/RegisterPage";
 import LoginPage from "./features/users/LoginPage";
-import MainPage from "./features/cocktails/MainPage";
+import Cocktails from "./features/cocktails/Cocktails.tsx";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
       <main>
         <Container>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<Cocktails />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
